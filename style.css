@@ -1,0 +1,27 @@
+body {
+    max-width: 960px;
+    margin: 0 auto;
+    font-family: Sans-serif;
+}
+
+.square {
+    width: 100px;
+    height:100px;
+
+    
+}
+
+.grid {
+    display:flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    width: 618px;
+    hwight: 618px;
+}
+
+.bug {
+    background-image:url("tb.png");
+    background-size: cover;
+}
