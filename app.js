@@ -10,7 +10,7 @@ function randomSquare() {
     square.forEach(className => {
         className.classList.remove("bug")
     })
-    let randomPosition = square[Math.floor(Math.random() * 9)]
+    let randomPosition = square[Math.floor(Math.random() * square.length)]
     randomPosition.classList.add("bug")
     hitPosition = randomPosition.id 
 }
@@ -18,7 +18,8 @@ function randomSquare() {
 square.forEach(id => {
     id.addEventListener('mouseup', () => {         
         if(id.id === hitPosition) {
-            result = result + 1
+            id.classList.remove('bug')   
+            result++
             score.textContent = result
         }
     })
