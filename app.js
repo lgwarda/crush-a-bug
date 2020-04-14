@@ -5,22 +5,25 @@ let score = document.querySelector('#score')
 
 let result = 0
 let currentTime = timeLeft.textContent
-
+let clickable = true
+  
 function randomSquare() {
     square.forEach(className => {
         className.classList.remove("bug")
     })
     let randomPosition = square[Math.floor(Math.random() * square.length)]
     randomPosition.classList.add("bug")
+    clickable = true
     hitPosition = randomPosition.id 
 }
 
 square.forEach(id => {
     id.addEventListener('mouseup', () => {         
-        if(id.id === hitPosition) {
+        if(id.id === hitPosition && clickable) {
             id.classList.remove('bug')   
             result++
             score.textContent = result
+            clickable = false
         }
     })
 })

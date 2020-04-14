@@ -5,9 +5,9 @@ body {
 }
 
 .square {
-    width: 100px;
-    height:100px;
-
+    width: 200px;
+    height:200px;
+    
     
 }
 
@@ -17,8 +17,8 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;
-    width: 618px;
-    hwight: 618px;
+    width: 620px;
+    height: 620px;
 }
 
 .bug {
