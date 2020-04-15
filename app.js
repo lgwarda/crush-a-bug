@@ -6,7 +6,8 @@ let score = document.querySelector('#score')
 let result = 0
 let currentTime = timeLeft.textContent
 let clickable = true
-  
+let lastSqr;  
+
 function randomSquare() {
     square.forEach(className => {
         className.classList.remove("bug")
@@ -14,7 +15,13 @@ function randomSquare() {
     let randomPosition = square[Math.floor(Math.random() * square.length)]
     randomPosition.classList.add("bug")
     clickable = true
-    hitPosition = randomPosition.id 
+    hitPosition = randomPosition.id
+    if(hitPosition === lastSqr ) {
+       console.log("How dare you!")
+        return randomSquare()
+    }
+    lastSqr = hitPosition
+    return hitPosition 
 }
 
 square.forEach(id => {
