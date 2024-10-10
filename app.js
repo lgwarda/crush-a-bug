@@ -1,59 +1,56 @@
-const square = document.querySelectorAll('.square')
-const bug = document.querySelectorAll('.bug')
-const timeLeft = document.querySelector('#time-left')
-let score = document.querySelector('#score')
+const square = document.querySelectorAll('.square'); // Zbieranie wszystkich kwadratów
+const score = document.getElementById('score'); // Element do wyświetlania wyniku
+const timeLeft = document.getElementById('timeLeft'); // Element do wyświetlania pozostałego czasu
 
-let result = 0
-let currentTime = timeLeft.textContent
-let clickable = true
+let result = 0;
+let currentTime = parseInt(timeLeft.textContent, 10); // Upewnij się, że to jest liczba
+let clickable = true;
 let lastSqr;  
+let timerId;
 
+// Funkcja do losowania kwadratu
 function randomSquare() {
-    square.forEach(className => {
-        className.classList.remove("bug")
-    })
-    let randomPosition = square[Math.floor(Math.random() * square.length)]
-    randomPosition.classList.add("bug")
-    clickable = true
-    hitPosition = randomPosition.id
-    if(hitPosition === lastSqr ) {
-       console.log("How dare you!")
-        return randomSquare()
+    square.forEach(className => className.classList.remove("bug"));
+    let randomPosition = square[Math.floor(Math.random() * square.length)];
+    
+    // Unikaj wyświetlania tego samego kwadratu
+    if (randomPosition.id === lastSqr) {
+        return randomSquare(); // Losuj ponownie
     }
-    lastSqr = hitPosition
-    return hitPosition 
+
+    randomPosition.classList.add("bug");
+    lastSqr = randomPosition.id;
+    clickable = true;
 }
 
+// Obsługuje kliknięcia na kwadrat
 square.forEach(id => {
     id.addEventListener('mouseup', () => {         
-        if(id.id === hitPosition && clickable) {
-            id.classList.remove('bug')   
-            result++
-            score.textContent = result
-            clickable = false
+        if (id.id === lastSqr && clickable) {
+            id.classList.remove('bug');   
+            result++;
+            score.textContent = result;
+            clickable = false;
         }
-    })
-})
+    });
+});
 
+// Ruch robaka
 function moveBug() {
-    let timerId = null
-    timerId = setInterval(randomSquare, 1000)
+    timerId = setInterval(randomSquare, 1000);
 }
 
-moveBug()
-
-
+// Zlicza czas
 function countDown() {
-    currentTime--
-    timeLeft.textContent = currentTime
+    currentTime--;
+    timeLeft.textContent = currentTime;
 
     if (currentTime === 0) {
-        clearInterval(timerId)
-        alert( `GAME OVER! You crashed ${result} bugs.`)
+        clearInterval(timerId);
+        alert(`GAME OVER! You crashed ${result} bugs.`);
     }
 }
 
-
-let timerId = setInterval(countDown, 1000)
-
-
+// Uruchom gry
+moveBug();
+setInterval(countDown, 1000);
