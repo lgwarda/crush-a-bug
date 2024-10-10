@@ -9,6 +9,13 @@ let clickable = true;
 let lastSqr;
 let timerId;
 
+// Uzyskiwanie dostępu do dźwięków
+const hitSound = document.getElementById('hitSound');
+const backgroundMusic = document.getElementById('backgroundMusic');
+
+// Odtwarzanie muzyki w tle
+backgroundMusic.play();
+
 function randomSquare() {
     square.forEach(className => {
         className.textContent = ''; // Clear previous bugs
@@ -33,6 +40,8 @@ function handleClick(id) {
         result++;
         score.textContent = result;
         clickable = false;
+        hitSound.currentTime = 0; // Reset dźwięku do początku
+        hitSound.play(); // Odtwórz dźwięk przy trafieniu
     }
 }
 
@@ -54,6 +63,7 @@ function countDown() {
 
     if (currentTime === 0) {
         clearInterval(timerId);
+        backgroundMusic.pause(); // Zatrzymaj muzykę w tle
         alert(`GAME OVER! You crushed ${result} bugs.`);
     }
 }
