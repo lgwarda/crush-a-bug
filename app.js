@@ -26,15 +26,20 @@ function randomSquare() {
     return hitPosition;
 }
 
+// Function to handle clicks on squares
+function handleClick(id) {
+    if (id.id === hitPosition && clickable) {
+        id.textContent = ''; // Clear the emoji
+        result++;
+        score.textContent = result;
+        clickable = false;
+    }
+}
+
+// Event listeners for mouse and touch events
 square.forEach(id => {
-    id.addEventListener('mouseup', () => {
-        if (id.id === hitPosition && clickable) {
-            id.textContent = ''; // Clear the emoji
-            result++;
-            score.textContent = result;
-            clickable = false;
-        }
-    });
+    id.addEventListener('mouseup', () => handleClick(id));
+    id.addEventListener('touchstart', () => handleClick(id)); // Added touch event
 });
 
 function moveBug() {

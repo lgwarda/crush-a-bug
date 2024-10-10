@@ -21,12 +21,13 @@ h1, h2 {
     width: 200px;
     height: 200px;
     display: flex;
-    justify-content: center; /* Center the emoji */
-    align-items: center; /* Center the emoji */
-    font-size: 3em; /* Larger font size for emojis */
-    border: none; /* Remove borders */
-    background-color: transparent; /* No background color */
+    justify-content: center;
+    align-items: center;
+    font-size: 5em; /* Increased font size for larger emojis */
+    border: none;
+    background-color: transparent;
 }
+
 
 .grid {
     display: flex;
@@ -41,3 +42,50 @@ h1, h2 {
 .bug {
     background-color: transparent; /* Ensure the bug has no background */
 }
+
+
+body {
+    max-width: 960px;
+    margin: 0 auto;
+    font-family: Sans-serif;
+    background-color: #e0f7fa; /* Light background color */
+}
+
+h1, h2 {
+    text-align: left; /* Align headings to the left */
+    color: #333; /* Darker color for better contrast */
+}
+
+.score-container {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    gap: 20px; /* Space between score and timer */
+    margin-bottom: 20px; /* Space below the score container */
+}
+
+.square {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5em; /* Increased font size for larger emojis */
+    border: none;
+    background-color: transparent;
+}
+
+
+.grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    width: 620px;
+    height: 620px;
+}
+
+.bug {
+    background-color: transparent; /* Ensure the bug has no background */
+}
+
