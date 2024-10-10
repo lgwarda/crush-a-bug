@@ -2,18 +2,35 @@ body {
     max-width: 960px;
     margin: 0 auto;
     font-family: Sans-serif;
+    background-color: #e0f7fa; /* Light background color */
+}
+
+h1, h2 {
+    text-align: left; /* Align headings to the left */
+    color: #333; /* Darker color for better contrast */
+}
+
+.score-container {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    gap: 20px; /* Space between score and timer */
+    margin-bottom: 20px; /* Space below the score container */
 }
 
 .square {
     width: 200px;
-    height:200px;
-    
-    
+    height: 200px;
+    display: flex;
+    justify-content: center; /* Center the emoji */
+    align-items: center; /* Center the emoji */
+    font-size: 3em; /* Larger font size for emojis */
+    border: none; /* Remove borders */
+    background-color: transparent; /* No background color */
 }
 
 .grid {
-    display:flex;
-    flex-direction:row;
+    display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;
@@ -21,15 +38,6 @@ body {
     height: 620px;
 }
 
-.square.appear {
-    animation: fadeIn 0.3s ease-in;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.bug {   
-    background-size: cover;
+.bug {
+    background-color: transparent; /* Ensure the bug has no background */
 }
