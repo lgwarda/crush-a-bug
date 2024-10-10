@@ -2,32 +2,34 @@ const square = document.querySelectorAll('.square'); // Zbieranie wszystkich kwa
 const score = document.getElementById('score'); // Element do wyświetlania wyniku
 const timeLeft = document.getElementById('timeLeft'); // Element do wyświetlania pozostałego czasu
 
+const emojis = ['🐞', '🐛', '🦗', '🐜']; // Array of bug emojis
 let result = 0;
-let currentTime = parseInt(timeLeft.textContent, 10); // Upewnij się, że to jest liczba
+let currentTime = parseInt(timeLeft.textContent); // Ensure it's a number
 let clickable = true;
-let lastSqr;  
+let lastSqr;
 let timerId;
 
-// Funkcja do losowania kwadratu
 function randomSquare() {
-    square.forEach(className => className.classList.remove("bug"));
+    square.forEach(className => {
+        className.textContent = ''; // Clear previous bugs
+    });
     let randomPosition = square[Math.floor(Math.random() * square.length)];
-    
-    // Unikaj wyświetlania tego samego kwadratu
-    if (randomPosition.id === lastSqr) {
-        return randomSquare(); // Losuj ponownie
-    }
-
-    randomPosition.classList.add("bug");
-    lastSqr = randomPosition.id;
+    randomPosition.textContent = emojis[Math.floor(Math.random() * emojis.length)]; // Randomly select an emoji
     clickable = true;
+    hitPosition = randomPosition.id;
+
+    if (hitPosition === lastSqr) {
+        console.log("How dare you!");
+        return randomSquare();
+    }
+    lastSqr = hitPosition;
+    return hitPosition;
 }
 
-// Obsługuje kliknięcia na kwadrat
 square.forEach(id => {
-    id.addEventListener('mouseup', () => {         
-        if (id.id === lastSqr && clickable) {
-            id.classList.remove('bug');   
+    id.addEventListener('mouseup', () => {
+        if (id.id === hitPosition && clickable) {
+            id.textContent = ''; // Clear the emoji
             result++;
             score.textContent = result;
             clickable = false;
@@ -35,22 +37,20 @@ square.forEach(id => {
     });
 });
 
-// Ruch robaka
 function moveBug() {
     timerId = setInterval(randomSquare, 1000);
 }
 
-// Zlicza czas
+moveBug();
+
 function countDown() {
     currentTime--;
     timeLeft.textContent = currentTime;
 
     if (currentTime === 0) {
         clearInterval(timerId);
-        alert(`GAME OVER! You crashed ${result} bugs.`);
+        alert(`GAME OVER! You crushed ${result} bugs.`);
     }
 }
 
-// Uruchom gry
-moveBug();
-setInterval(countDown, 1000);
+timerId = setInterval(countDown, 1000);
